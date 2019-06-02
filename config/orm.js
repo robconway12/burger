@@ -53,16 +53,9 @@ const orm = {
 			cb(result);
 		});
 	},
-	// An example of objColVals would be {name: panther, sleepy: true}
-	update: function(table, objColVals, condition, cb) {
-		const queryString = 'UPDATE ' + table;
 
-		queryString += ' SET ';
-		queryString += objToSql(objColVals);
-		queryString += ' WHERE ';
-		queryString += condition;
-
-		console.log(queryString);
+	update: function(tableInput, condition, cb) {
+		const queryString = 'UPDATE ' + tableInput + 'SET devoured=true WHERE id=' + condition + ';';
 		connection.query(queryString, function(err, result) {
 			if (err) {
 				throw err;
