@@ -14,13 +14,7 @@ const burger = {
 
 	update: function(id, cb) {
 		orm.update('burgers', id, cb);
-	},
-
-	delete: function(condition, cb) {
-		orm.delete('burgers', condition, function(res) {
-			cb(res);
-		});
-	},
+	}
 };
 
 // Export the database functions for the controller (burgersController.js).

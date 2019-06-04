@@ -1,27 +1,4 @@
-const connection = require('../config/connection.js');
-
-function printQuestionMarks(num) {
-	const arr = [];
-
-	for (const i = 0; i < num; i++) {
-		arr.push('?');
-	}
-
-	return arr.toString();
-}
-
-// Helper function for SQL syntax.
-function objToSql(ob) {
-	const arr = [];
-
-	for (const key in ob) {
-		if (Object.hasOwnProperty.call(ob, key)) {
-			arr.push(key + '=' + ob[key]);
-		}
-	}
-
-	return arr.toString();
-}
+const connection = require('./connection.js');
 
 // Object for all our SQL statement functions.
 const orm = {
@@ -35,7 +12,7 @@ const orm = {
 		});
 	},
 	create: function(tableInput, val, cb) {
-		const queryString = 'INSERT INTO ' + tableInput + ' (burger_name) VALUES (' + val + ';';
+		const queryString = 'INSERT INTO ' + tableInput + ' (burger_name) VALUES (' + val + ');';
 		connection.query(queryString, function(err, result) {
 			if (err) {
 				throw err;
@@ -45,7 +22,7 @@ const orm = {
 	},
 
 	update: function(tableInput, condition, cb) {
-		const queryString = 'UPDATE ' + tableInput + 'SET devoured=true WHERE id=' + condition + ';';
+		const queryString = 'UPDATE ' + tableInput + ' SET devoured=true WHERE id=' + condition + ';';
 		connection.query(queryString, function(err, result) {
 			if (err) {
 				throw err;
@@ -56,5 +33,5 @@ const orm = {
 	},
 };
 
-// Export the orm object for the model (cat.js).
+// Export the orm object for the model.
 module.exports = orm;
